@@ -22,13 +22,16 @@ public class Bob2 {
 	public String response() throws IOException, InterruptedException {
 		//uncomment next line and comment following to break service 2 
     	//String htmlResponse = "Service 2 response";
-    	String htmlResponse = httpGet("http://127.0.0.1:9993");
+		System.out.println("Inside service 2 connecting to service 3");
+		
+		String htmlResponse = httpGet("http://127.0.0.1:9993");
+    	
 		return htmlResponse;					 						 
 	}
     
     public String defaultFallback2() {
 		//System.out.println("Could not connect to service 3");
-        return "Could not connect to service 3";
+        return "Inside fallback method 2, Could not connect to service 3";
 	}
     
     public static String httpGet(String urlStr) throws IOException {
