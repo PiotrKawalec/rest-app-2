@@ -15,23 +15,24 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @Component
 @RestController
-public class Bob2 {
+public class Service2 {
 	
 	@HystrixCommand(fallbackMethod = "defaultFallback2")
     @RequestMapping(value="/", method=RequestMethod.GET)
 	public String response() throws IOException, InterruptedException {
-		//uncomment next line and comment following to break service 2 
-    	//String htmlResponse = "Service 2 response";
-		System.out.println("Inside service 2 connecting to service 3");
 		
+		//uncomment to timeout connection
+		//Thread.sleep(10000);
 		String htmlResponse = httpGet("http://127.0.0.1:9993");
     	
 		return htmlResponse;					 						 
 	}
     
     public String defaultFallback2() {
-		//System.out.println("Could not connect to service 3");
-        return "Inside fallback method 2, Could not connect to service 3";
+		
+        return "Connected to service 2.<hr>"
+        		+ "Service 2 could not connect to service 3 - " + 
+				"message from Hystrix fallback method for service 2.";
 	}
     
     public static String httpGet(String urlStr) throws IOException {
