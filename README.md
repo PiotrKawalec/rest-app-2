@@ -1,2 +1,2 @@
 # rest-app-2
-It is listening on port 9992
+Application for testing Hystrix implementation. It is listening on port 9992 and forwards call to rest-app-3.
